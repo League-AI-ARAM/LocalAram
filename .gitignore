@@ -32,32 +32,8 @@ htmlcov/
 nosetests.xml
 coverage.xml
 
-# Translations
-*.mo
-
-# Django stuff:
-*.log
-local_settings.py
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
+# API
+API.py
 
 # Environments
 .env

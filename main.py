@@ -1,8 +1,5 @@
 import enums
 from Player import Player
-from MatchMetadata import MatchMetadata
-from MatchInfo import MatchInfo
-from database import data
 
 PLATFORM = enums.Platform.NA1
 NAME = "BeastMachine#1338"
