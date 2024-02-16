@@ -1,9 +1,11 @@
 import json
 
+
 class Objective:
     def __init__(self, first: bool, kills: int):
         self.first = first
         self.kills = kills
+
 
 class Team:
     def __init__(self, team_id: int, win: bool, bans, objectives: dict[Objective]):
@@ -12,10 +14,28 @@ class Team:
         self.bans = bans
         self.objectives = objectives
 
+
 class MatchInfo:
     """Represents detailed information about a match."""
 
-    def __init__(self, end_of_game_result: str, game_creation: int, game_duration: int, game_end_timestamp: int, game_id: int, game_mode: str, game_name: str, game_start_timestamp: int, game_type: str, game_version: str, map_id: int, participants: list[str], platform_id: str, queue_id: int, teams: list[Team]) -> None:
+    def __init__(
+        self,
+        end_of_game_result: str,
+        game_creation: int,
+        game_duration: int,
+        game_end_timestamp: int,
+        game_id: int,
+        game_mode: str,
+        game_name: str,
+        game_start_timestamp: int,
+        game_type: str,
+        game_version: str,
+        map_id: int,
+        participants: list[str],
+        platform_id: str,
+        queue_id: int,
+        teams: list[Team],
+    ) -> None:
         self.end_of_game_result = end_of_game_result
         self.game_creation = game_creation
         self.game_duration = game_duration
@@ -31,41 +51,46 @@ class MatchInfo:
         self.platform_id = platform_id
         self.queue_id = queue_id
         self.teams = teams
-        
+
+    def __str__(self):
+        return str(vars(self))
+
     @staticmethod
     def initialize_from_json(data):
         data = data["info"]
 
         # Parse teams
         teams = []
-        for team_data in data.get('teams', []):
+        for team_data in data.get("teams"):
             objectives = {}
-            for key, obj in team_data.get('objectives', {}).items():
-                objectives[key] = Objective(first=obj.get('first', False), kills=obj.get('kills', 0))
-            
+            for key, obj in team_data.get("objectives").items():
+                objectives[key] = Objective(
+                    first=obj.get("first", False), kills=obj.get("kills", 0)
+                )
+
             team = Team(
-                team_id=team_data.get('teamId'),
-                win=team_data.get('win'),
-                bans=team_data.get('bans', []),
-                objectives=objectives
+                team_id=team_data.get("teamId"),
+                win=team_data.get("win"),
+                bans=team_data.get("bans"),
+                objectives=objectives,
             )
             teams.append(team)
 
         # Create MatchInfo instance
         return MatchInfo(
-            end_of_game_result=data.get('endOfGameResult'),
-            game_creation=data.get('gameCreation'),
-            game_duration=data.get('gameDuration'),
-            game_end_timestamp=data.get('gameEndTimestamp'),
-            game_id=data.get('gameId'),
-            game_mode=data.get('gameMode'),
-            game_name=data.get('gameName'),
-            game_start_timestamp=data.get('gameStartTimestamp'),
-            game_type=data.get('gameType'),
-            game_version=data.get('gameVersion'),
-            map_id=data.get('mapId'),
-            participants=data.get('participants', []),
-            platform_id=data.get('platformId'),
-            queue_id=data.get('queueId'),
-            teams=teams
+            end_of_game_result=data.get("endOfGameResult"),
+            game_creation=data.get("gameCreation"),
+            game_duration=data.get("gameDuration"),
+            game_end_timestamp=data.get("gameEndTimestamp"),
+            game_id=data.get("gameId"),
+            game_mode=data.get("gameMode"),
+            game_name=data.get("gameName"),
+            game_start_timestamp=data.get("gameStartTimestamp"),
+            game_type=data.get("gameType"),
+            game_version=data.get("gameVersion"),
+            map_id=data.get("mapId"),
+            participants=data.get("participants"),
+            platform_id=data.get("platformId"),
+            queue_id=data.get("queueId"),
+            teams=teams,
         )

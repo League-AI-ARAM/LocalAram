@@ -7,4 +7,4 @@ NAME = "BeastMachine#1338"
 beast = Player(NAME, PLATFORM)
 
 history = beast.match_history
-print(history.matches[0].game_id)
+print(history.matches[0])

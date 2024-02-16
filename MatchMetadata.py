@@ -1,5 +1,6 @@
 import json
 
+
 class MatchMetadata:
     def __init__(self, data_version: int, match_id: str, participants: list[str]):
         self.match_id = match_id
@@ -10,9 +11,9 @@ class MatchMetadata:
     def initialize_from_json(data):
         try:
             match_metadata = MatchMetadata(
-                data_version=data['dataVersion'],
-                match_id=data['matchId'],
-                participants=data['participants']
+                data_version=data["dataVersion"],
+                match_id=data["matchId"],
+                participants=data["participants"],
             )
             return match_metadata
 

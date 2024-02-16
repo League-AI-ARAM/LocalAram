@@ -22,11 +22,19 @@ class Platform(Enum):
     def __str__(self):
         return self.name
 
+
 class Region(Enum):
     AMERICAS = [Platform.BR1, Platform.NA1, Platform.LA1, Platform.LA2]
     ASIA = [Platform.JP1, Platform.KR]
     EUROPE = [Platform.EUN1, Platform.EUW1, Platform.TR1, Platform.RU]
-    SEA = [Platform.OC1, Platform.PH2, Platform.SG2, Platform.TH2, Platform.TW2, Platform.VN2]
+    SEA = [
+        Platform.OC1,
+        Platform.PH2,
+        Platform.SG2,
+        Platform.TH2,
+        Platform.TW2,
+        Platform.VN2,
+    ]
 
     @classmethod
     def get_region(cls, platform):
