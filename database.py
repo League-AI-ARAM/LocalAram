@@ -8,7 +8,7 @@ class data:
         self.cursor = self.conn.cursor()
         self.__create()
 
-    def run_query(self, query):
+    def run_query(self, query: str) -> None:
         self.cursor.execute(query)
 
     def __del__(self):
@@ -45,7 +45,7 @@ class data:
         """
         )
 
-    def insert_match_metadata(self, metadata: MatchMetadata):
+    def insert_match_metadata(self, metadata: MatchMetadata) -> None:
         for participant in metadata.participants:
             query = """INSERT INTO MatchMetadata (DataVersion, MatchID, Participant) 
                 VALUES (?, ?, ?)"""

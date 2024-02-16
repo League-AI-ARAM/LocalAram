@@ -56,7 +56,7 @@ class MatchInfo:
         return str(vars(self))
 
     @staticmethod
-    def initialize_from_json(data):
+    def initialize_from_json(data: dict):
         data = data["info"]
 
         # Parse teams

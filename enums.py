@@ -37,7 +37,7 @@ class Region(Enum):
     ]
 
     @classmethod
-    def get_region(cls, platform):
+    def get_region(cls, platform: Platform):
         for region in cls:
             if platform in region.value:
                 return region.name

@@ -8,7 +8,7 @@ class MatchMetadata:
         self.participants = participants
 
     @staticmethod
-    def initialize_from_json(data):
+    def initialize_from_json(data: dict):
         try:
             match_metadata = MatchMetadata(
                 data_version=data["dataVersion"],
